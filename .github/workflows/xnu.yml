@@ -40,6 +40,7 @@ env:
   MACOS_VERSION: ${{ inputs.macos_version || '15.3' }}
   KERNEL_CONFIG: ${{ inputs.kernel_config || 'DEVELOPMENT' }}
   MACHINE_CONFIG: ${{ inputs.machine_config || 'SWEET' }}
+  ARCH_STRING_FOR_CURRENT_MACHINE_CONFIG: arm64e
   # Bump to throw away every cache (host tools + ccache) at once (upstream Bergamota docs/CI_CACHE.md).
   CACHE_VERSION: v2
   # ccache: xnu's makedefs honour `CCACHE ?=` (KCC/KC++ = $(CCACHE) $(CC)), so the env var is
