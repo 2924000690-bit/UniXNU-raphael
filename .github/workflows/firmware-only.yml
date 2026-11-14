@@ -66,6 +66,7 @@ jobs:
           curl -sL -H "Authorization: Bearer $GH_TOKEN" \
             "https://api.github.com/repos/${{ github.repository }}/actions/artifacts/$ID/zip" -o /tmp/k.zip
           python3 -c "import zipfile;zipfile.ZipFile('/tmp/k.zip').extractall('inputs/raphael')"
+          cp inputs/raphael/kernel.development.sweet inputs/raphael/kernel.macho
           ls -l inputs/raphael
 
       - name: Checkout UniXNU driver (pinned)
