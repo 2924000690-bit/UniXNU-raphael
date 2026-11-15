@@ -1,11 +1,10 @@
 diff --git a/bsd/dev/sweet_ufs.c b/bsd/dev/sweet_ufs.c
 --- a/bsd/dev/sweet_ufs.c
 +++ b/bsd/dev/sweet_ufs.c
-@@ -597,6 +597,7 @@ sweet_ufs_init(void)
- 	printf("SWEET UFS: \"%s\" on LUN %u: first block 0x%llx, %llu MiB, %s, DMA at 0x%llx\n",
- 	    want, su.lun, su.first_block, su.nblocks * UFS_BLOCK >> 20,
- 	    su.writable ? "read-write" : "read-only", su.dma_pa);
-+	su.writable = true;
- 	sweet_log_start();
- 	return 0;
- }
+@@ -702,6 +702,6 @@ sweet_log_start(void)
+ 	PE_parse_boot_argn("sweetlog", &on, sizeof(on));
+-	if (!on || !su.writable || su.nblocks < 2 * SWEET_LOG_BLOCKS) {
++	if (!on || su.nblocks < 2 * SWEET_LOG_BLOCKS) {
+ 			return;
+ 	}
+ 	if (kernel_thread_start(sweet_log_thread, NULL, &thread) == KERN_SUCCESS) {
